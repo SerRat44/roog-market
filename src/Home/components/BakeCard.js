@@ -15,7 +15,12 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import PriceInput from "../../components/PriceInput";
 import { useEffect, useState } from "react";
 import { config } from "../../config";
-import { buyEggs, sellEggs, hatchEggs, initialize } from "../../contracts/bean";
+import {
+  buyRoogs,
+  sellRoogs,
+  hatchRoogs,
+  initialize,
+} from "../../contracts/bean";
 
 import {
   getWalletSolBalance,
@@ -64,11 +69,8 @@ export default function BakeCard() {
   const [adminKey, setAdminKey] = useState(null);
 
   useEffect(() => {
-    getWalletTokenBalance(
-      wallet,
-      "8N3ZkCwRe36Cj1PqXaMw2h92yzSy18L1z6sptQMiQGrr"
-    ).then((bal) => {
-      console.log("getWalletTokenBalance bal=", bal);
+    getWalletSolBalance(wallet).then((bal) => {
+      console.log("getWalletSolBalance bal=", bal);
       setWalletSolBalance(bal);
     });
     getUserData(wallet).then((data) => {
@@ -130,7 +132,7 @@ export default function BakeCard() {
     console.log("bake: ref=", ref);
     if (ref === null) ref = wallet.publicKey;
     try {
-      await buyEggs(wallet, ref, bakeSOL);
+      await buyRoogs(wallet, ref, bakeSOL);
     } catch (err) {
       console.error(err);
     }
@@ -145,7 +147,7 @@ export default function BakeCard() {
 
     if (ref === null) ref = wallet.publicKey;
     try {
-      await hatchEggs(wallet, ref);
+      await hatchRoogs(wallet, ref);
     } catch (err) {
       console.error(err);
     }
@@ -157,7 +159,7 @@ export default function BakeCard() {
     setLoading(true);
 
     try {
-      await sellEggs(wallet);
+      await sellRoogs(wallet);
     } catch (err) {
       console.error(err);
     }
