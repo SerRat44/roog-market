@@ -1,47 +1,41 @@
-
-
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from "react";
 import {
   WalletDialogProvider as MaterialUIWalletDialogProvider,
-  WalletMultiButton as MaterialUIWalletMultiButton
-} from '@solana/wallet-adapter-material-ui';
-import { ConnectionProvider, useLocalStorage, WalletProvider } from '@solana/wallet-adapter-react';
+  WalletMultiButton as MaterialUIWalletMultiButton,
+} from "@solana/wallet-adapter-material-ui";
+import {
+  ConnectionProvider,
+  useLocalStorage,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   getBitpieWallet,
   getCoin98Wallet,
-  getLedgerWallet,
+  LedgerWalletAdapter,
   getMathWallet,
-  getPhantomWallet,
-  getSolflareWallet,
-  getSolletWallet,
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+  SolletWalletAdapter,
   getSolongWallet,
-  getTorusWallet
-} from '@solana/wallet-adapter-wallets';
-import { clusterApiUrl } from '@solana/web3.js';
-import { useSnackbar } from 'notistack';
+  getTorusWallet,
+} from "@solana/wallet-adapter-wallets";
+import { clusterApiUrl } from "@solana/web3.js";
+import { useSnackbar } from "notistack";
 
-export const Wallets = ({children}) => {
-  const endpoint = useMemo(() => clusterApiUrl('devnet'), []);
+export const Wallets = ({ children }) => {
+  const endpoint = useMemo(() => clusterApiUrl("devnet"), []);
+  const network = WalletAdapterNetwork.Mainnet;
   // clusterApiUrl returns a string.
   // const endpoint = useMemo(() => "http://localhost:8899", []);
-  const [autoConnect, setAutoConnect] = useLocalStorage('autoConnect', false);
+  const [autoConnect, setAutoConnect] = useLocalStorage("autoConnect", false);
 
   const wallets = useMemo(
     () => [
-      getPhantomWallet(),
-      getSolflareWallet(),
-      getTorusWallet({
-        options: {
-          clientId:
-            'BOM5Cl7PXgE9Ylq1Z1tqzhpydY0RVr8k90QQ85N7AKI5QGSrr9iDC-3rvmy0K_hF0JfpLMiXoDhta68JwcxS1LQ'
-        }
-      }),
-      getLedgerWallet(),
-      getSolongWallet(),
-      getMathWallet(),
-      getSolletWallet(),
-      getCoin98Wallet(),
-      getBitpieWallet()
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
+
+      new LedgerWalletAdapter(),
     ],
     []
   );
@@ -49,9 +43,12 @@ export const Wallets = ({children}) => {
   const { enqueueSnackbar } = useSnackbar();
   const onError = useCallback(
     (error) => {
-      enqueueSnackbar(error.message ? `${error.name}: ${error.message}` : error.name, {
-        variant: 'error'
-      });
+      enqueueSnackbar(
+        error.message ? `${error.name}: ${error.message}` : error.name,
+        {
+          variant: "error",
+        }
+      );
       console.error(error);
     },
     [enqueueSnackbar]
@@ -59,11 +56,8 @@ export const Wallets = ({children}) => {
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      
-      <WalletProvider wallets={wallets} onError={onError} autoConnect={autoConnect}>
-        
+      <WalletProvider wallets={wallets} onError={onError} autoConnect>
         <MaterialUIWalletDialogProvider>
-          
           {children}
         </MaterialUIWalletDialogProvider>
       </WalletProvider>

@@ -69,25 +69,29 @@ export default function BakeCard() {
   const [adminKey, setAdminKey] = useState(null);
 
   useEffect(() => {
-    getWalletSolBalance(wallet).then((bal) => {
-      console.log("getWalletSolBalance bal=", bal);
-      setWalletSolBalance(bal);
-    });
-    getUserData(wallet).then((data) => {
-      if (data !== null) {
-        console.log("userData =", data);
-        setBeanRewards(data.beanRewards);
-        setMinersCount(data.miners);
-      } else {
-        setBeanRewards("0");
-        setMinersCount("0");
-      }
-    });
-    getGlobalStateData(wallet).then((data) => {
-      if (data != null) {
-        setAdminKey(data.authority);
-      }
-    });
+    try {
+      getWalletSolBalance(wallet).then((bal) => {
+        console.log("getWalletSolBalance bal=", bal);
+        setWalletSolBalance(bal);
+      });
+      getUserData(wallet).then((data) => {
+        if (data !== null) {
+          console.log("userData =", data);
+          setBeanRewards(data.beanRewards);
+          setMinersCount(data.miners);
+        } else {
+          setBeanRewards("0");
+          setMinersCount("0");
+        }
+      });
+      getGlobalStateData(wallet).then((data) => {
+        if (data != null) {
+          setAdminKey(data.authority);
+        }
+      });
+    } catch (err) {
+      console.log("error");
+    }
   }, [wallet, dataUpdate]);
 
   useEffect(() => {
@@ -248,7 +252,6 @@ export default function BakeCard() {
             <Grid item flexGrow={1} marginRight={1} marginTop={3}>
               <Button
                 variant="contained"
-                color="secondary"
                 fullWidth
                 disabled={!address || loading}
                 onClick={reBake}
@@ -260,7 +263,6 @@ export default function BakeCard() {
             <Grid item flexGrow={1} marginLeft={1} marginTop={3}>
               <Button
                 variant="contained"
-                color="secondary"
                 fullWidth
                 disabled={!address || loading}
                 onClick={eatBeans}

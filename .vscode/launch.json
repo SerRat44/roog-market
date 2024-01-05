@@ -11,9 +11,7 @@
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["start"],
-      "env": {
-        "NODE_OPTIONS": "--openssl-legacy-provider"
-      },
+
       "timeout": 30000,
       "restart": true,
       "console": "integratedTerminal",

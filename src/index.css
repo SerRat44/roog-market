@@ -42,6 +42,14 @@ code {
   background-color: #ed8200 !important;
   font-size: 20px !important;
   border-radius: 10px !important;
+
+  font-weight: bold !important;
+  box-shadow: none !important;
+
+  &:hover {
+    background-color: #b56300 !important;
+    color: white !important;
+  }
 }
 
 .MuiPaper-rounded {

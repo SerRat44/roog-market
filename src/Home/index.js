@@ -15,6 +15,11 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { Buffer } from "buffer";
+if (!window.Buffer) {
+  window.Buffer = Buffer;
+}
+
 const Wrapper = styled("div")(({ theme }) => ({
   position: "relative",
   maxWidth: 500,
