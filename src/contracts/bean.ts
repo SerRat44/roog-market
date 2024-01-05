@@ -286,7 +286,7 @@ export const getHatchIx = async (
   if (referralKey.equals(userKey)) {
     let globalStateKey = await keys.getGlobalStateKey();
     let globalData = await program.account.globalState.fetch(globalStateKey);
-    r = globalData.authority;
+    r = globalData.treasury;
   }
   let ix = await program.methods
     .hatchRoogs()

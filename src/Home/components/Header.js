@@ -18,11 +18,9 @@ export default function Header() {
   return (
     <Wrapper>
       <img src={logo} alt="" width={"70%"} />
-      <Typography variant="h3" marginTop={-3}>
-        Roog Market
-      </Typography>
+      <Typography variant="h3">Roog Market</Typography>
       <hr />
-      <Typography variant="h7" marginTop={-3}>
+      <Typography variant="h7">
         <b>
           50k (5% of supply) ROOG to start the pool off, up to 8% daily return,
           12% referral.
