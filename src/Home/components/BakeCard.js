@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import LinearProgress from "@mui/material/LinearProgress";
 import Divider from "@mui/material/Divider";
 import { styled } from "@mui/system";
+import { PublicKey } from "@solana/web3.js";
 
 import { useLocation } from "react-router-dom";
 import { useContractContext } from "../../providers/ContractProvider";
@@ -115,7 +116,8 @@ export default function BakeCard() {
   };
   const getRef = () => {
     const ref = query.get("ref");
-    return ref;
+    if (ref === null) return null;
+    return new PublicKey(ref);
   };
 
   const initializeProgram = async () => {
