@@ -6,7 +6,7 @@ import NutritionFacts from "./components/NutritionFacts";
 import ReferralLink from "./components/ReferralLink";
 import { useWallet } from "@solana/wallet-adapter-react";
 import Footer from "./components/Footer";
-import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+
 import {
   WalletDialogProvider as MaterialUIWalletDialogProvider,
   WalletMultiButton as MaterialUIWalletMultiButton,
