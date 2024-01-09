@@ -24,7 +24,9 @@ import { toast } from "react-toastify";
 import * as keys from "./keys";
 import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 
-const connection = new Connection(clusterApiUrl(Constants.NETWORK));
+const connection = new Connection(
+  "https://mainnet.helius-rpc.com/?api-key=aac6dea1-cecf-4f4c-bf89-4cfa4d2364d6"
+);
 
 export const getProgram = (wallet: any) => {
   let provider = new anchor.Provider(
