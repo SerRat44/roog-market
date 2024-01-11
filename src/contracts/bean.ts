@@ -25,7 +25,7 @@ import * as keys from "./keys";
 import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 
 const connection = new Connection(
-  "https://mainnet.helius-rpc.com/?api-key=aac6dea1-cecf-4f4c-bf89-4cfa4d2364d6"
+  "https://black-alien-film.solana-mainnet.quiknode.pro/3673e3ab1fc70a84f976170132c8e6daf34b317d/"
 );
 
 export const getProgram = (wallet: any) => {
