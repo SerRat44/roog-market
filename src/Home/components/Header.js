@@ -24,6 +24,18 @@ export default function Header() {
         <b>
           50k (5% of supply) ROOG to start the pool off, up to 8% daily return,
           12% referral.
+          <br />
+          HOW IT WORKS: <br />
+          Contract: This is the total amount of $ROOG in the contract <br />
+          1. You buy shares with $ROOG and gain a dynamic $ROOG income for your
+          shares. <br />
+          2. Bought shares are added to the contract and the contract grows
+          <br />
+          3. You can compound your rewards to gain more shares and increase your
+          daily rewards. <br />
+          4. You can withdraw your rewards at any time. <br />
+          5. You earn as long as there is $ROOG in the contract. <br />
+          You can use your refferal link to earn 12% off the deposit. <br />
         </b>
       </Typography>
       <br />
